@@ -34,8 +34,13 @@ newVideo uri id =
 
 emptyModel : Model
 emptyModel =
-    { videos = []
-    , uid = 0
+    { videos =
+        [ { uri = "https://www.youtube.com/watch?v=rhV6hlL_wMc", votes = 3, id = 0 }
+        , { uri = "https://www.youtube.com/watch?v=oHg5SJYRHA0", votes = 5, id = 1 }
+        , { uri = "https://www.youtube.com/watch?v=C-u5WLJ9Yk4", votes = 1, id = 2 }
+        , { uri = "https://www.youtube.com/watch?v=DqMFX91ToLw", votes = 3, id = 3 }
+        ]
+    , uid = 4
     , field = ""
     }
 
@@ -98,7 +103,7 @@ videoEntry address url =
       ]
     , text " "
     , button
-      [ class "btn btn-primary"
+      [ class "btn btn-default"
       , onClick address Add
       ]
       [ text "Add video" ]
@@ -109,7 +114,7 @@ videoInput : Address Action -> String -> Html
 videoInput address url =
   input
     [ id "newVideo"
-    , class "form-control"
+    , class "form-control main-field"
     , placeholder "YouTube ID"
     , autofocus True
     , value url
@@ -158,7 +163,7 @@ classForVideo : Int -> Int -> String
 classForVideo max votes =
   "list-group-item" ++
     if (votes > 0 && max == votes)
-    then " active"
+    then " winner"
     else ""
 
 main : Signal Html

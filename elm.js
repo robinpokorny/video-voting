@@ -10304,7 +10304,7 @@ Elm.VideoVoting.make = function (_elm) {
    $Signal = Elm.Signal.make(_elm),
    $String = Elm.String.make(_elm);
    var _op = {};
-   var classForVideo = F2(function (max,votes) {    return A2($Basics._op["++"],"list-group-item",_U.cmp(votes,0) > 0 && _U.eq(max,votes) ? " active" : "");});
+   var classForVideo = F2(function (max,votes) {    return A2($Basics._op["++"],"list-group-item",_U.cmp(votes,0) > 0 && _U.eq(max,votes) ? " winner" : "");});
    var is13 = function (code) {    return _U.eq(code,13) ? $Result.Ok({ctor: "_Tuple0"}) : $Result.Err("not the right key code");};
    var onEnter = F2(function (address,value) {
       return A3($Html$Events.on,
@@ -10334,7 +10334,7 @@ Elm.VideoVoting.make = function (_elm) {
    var videoInput = F2(function (address,url) {
       return A2($Html.input,
       _U.list([$Html$Attributes.id("newVideo")
-              ,$Html$Attributes.$class("form-control")
+              ,$Html$Attributes.$class("form-control main-field")
               ,$Html$Attributes.placeholder("YouTube ID")
               ,$Html$Attributes.autofocus(true)
               ,$Html$Attributes.value(url)
@@ -10353,7 +10353,7 @@ Elm.VideoVoting.make = function (_elm) {
                       ,A2(videoInput,address,url)]))
               ,$Html.text(" ")
               ,A2($Html.button,
-              _U.list([$Html$Attributes.$class("btn btn-primary"),A2($Html$Events.onClick,address,Add)]),
+              _U.list([$Html$Attributes.$class("btn btn-default"),A2($Html$Events.onClick,address,Add)]),
               _U.list([$Html.text("Add video")]))]));
    });
    var view = F2(function (address,model) {
@@ -10361,7 +10361,12 @@ Elm.VideoVoting.make = function (_elm) {
    });
    var NoOp = {ctor: "NoOp"};
    var actions = $Signal.mailbox(NoOp);
-   var emptyModel = {videos: _U.list([]),uid: 0,field: ""};
+   var emptyModel = {videos: _U.list([{uri: "https://www.youtube.com/watch?v=rhV6hlL_wMc",votes: 3,id: 0}
+                                     ,{uri: "https://www.youtube.com/watch?v=oHg5SJYRHA0",votes: 5,id: 1}
+                                     ,{uri: "https://www.youtube.com/watch?v=C-u5WLJ9Yk4",votes: 1,id: 2}
+                                     ,{uri: "https://www.youtube.com/watch?v=DqMFX91ToLw",votes: 3,id: 3}])
+                    ,uid: 4
+                    ,field: ""};
    var newVideo = F2(function (uri,id) {    return {uri: uri,votes: 0,id: id};});
    var update = F2(function (action,model) {
       var _p2 = action;
