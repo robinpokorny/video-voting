@@ -1,4 +1,7 @@
 # Video voting
+
+[DEMO](http://robinpokorny.github.io/video-voting/)
+
 Simple video voting app in Elm
 
 ## Build
