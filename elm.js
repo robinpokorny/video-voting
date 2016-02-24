@@ -10304,6 +10304,27 @@ Elm.VideoVoting.make = function (_elm) {
    $Signal = Elm.Signal.make(_elm),
    $String = Elm.String.make(_elm);
    var _op = {};
+   var getStorage = Elm.Native.Port.make(_elm).inbound("getStorage",
+   "Maybe.Maybe VideoVoting.Model",
+   function (v) {
+      return v === null ? Elm.Maybe.make(_elm).Nothing : Elm.Maybe.make(_elm).Just(typeof v === "object" && "videos" in v && "uid" in v && "field" in v ? {_: {}
+                                                                                                                                                          ,videos: typeof v.videos === "object" && v.videos instanceof Array ? Elm.Native.List.make(_elm).fromArray(v.videos.map(function (v) {
+                                                                                                                                                             return typeof v === "object" && "uri" in v && "votes" in v && "id" in v ? {_: {}
+                                                                                                                                                                                                                                       ,uri: typeof v.uri === "string" || typeof v.uri === "object" && v.uri instanceof String ? v.uri : _U.badPort("a string",
+                                                                                                                                                                                                                                       v.uri)
+                                                                                                                                                                                                                                       ,votes: typeof v.votes === "number" && isFinite(v.votes) && Math.floor(v.votes) === v.votes ? v.votes : _U.badPort("an integer",
+                                                                                                                                                                                                                                       v.votes)
+                                                                                                                                                                                                                                       ,id: typeof v.id === "number" && isFinite(v.id) && Math.floor(v.id) === v.id ? v.id : _U.badPort("an integer",
+                                                                                                                                                                                                                                       v.id)} : _U.badPort("an object with fields `uri`, `votes`, `id`",
+                                                                                                                                                             v);
+                                                                                                                                                          })) : _U.badPort("an array",
+                                                                                                                                                          v.videos)
+                                                                                                                                                          ,uid: typeof v.uid === "number" && isFinite(v.uid) && Math.floor(v.uid) === v.uid ? v.uid : _U.badPort("an integer",
+                                                                                                                                                          v.uid)
+                                                                                                                                                          ,field: typeof v.field === "string" || typeof v.field === "object" && v.field instanceof String ? v.field : _U.badPort("a string",
+                                                                                                                                                          v.field)} : _U.badPort("an object with fields `videos`, `uid`, `field`",
+      v));
+   });
    var classForVideo = F2(function (max,votes) {    return A2($Basics._op["++"],"list-group-item",_U.cmp(votes,0) > 0 && _U.eq(max,votes) ? " winner" : "");});
    var is13 = function (code) {    return _U.eq(code,13) ? $Result.Ok({ctor: "_Tuple0"}) : $Result.Err("not the right key code");};
    var onEnter = F2(function (address,value) {
@@ -10361,12 +10382,8 @@ Elm.VideoVoting.make = function (_elm) {
    });
    var NoOp = {ctor: "NoOp"};
    var actions = $Signal.mailbox(NoOp);
-   var emptyModel = {videos: _U.list([{uri: "https://www.youtube.com/watch?v=rhV6hlL_wMc",votes: 3,id: 0}
-                                     ,{uri: "https://www.youtube.com/watch?v=oHg5SJYRHA0",votes: 5,id: 1}
-                                     ,{uri: "https://www.youtube.com/watch?v=C-u5WLJ9Yk4",votes: 1,id: 2}
-                                     ,{uri: "https://www.youtube.com/watch?v=DqMFX91ToLw",votes: 3,id: 3}])
-                    ,uid: 4
-                    ,field: ""};
+   var emptyModel = {videos: _U.list([]),uid: 0,field: ""};
+   var initialModel = A2($Maybe.withDefault,emptyModel,getStorage);
    var newVideo = F2(function (uri,id) {    return {uri: uri,votes: 0,id: id};});
    var update = F2(function (action,model) {
       var _p2 = action;
@@ -10383,8 +10400,15 @@ Elm.VideoVoting.make = function (_elm) {
          default: var voteUp = function (video) {    return _U.eq(video.id,_p2._0) ? _U.update(video,{votes: video.votes + 1}) : video;};
            return _U.update(model,{videos: A2($List.map,voteUp,model.videos)});}
    });
-   var model = A3($Signal.foldp,update,emptyModel,actions.signal);
+   var model = A3($Signal.foldp,update,initialModel,actions.signal);
    var main = A2($Signal.map,view(actions.address),model);
+   var setStorage = Elm.Native.Port.make(_elm).outboundSignal("setStorage",
+   function (v) {
+      return {videos: Elm.Native.List.make(_elm).toArray(v.videos).map(function (v) {    return {uri: v.uri,votes: v.votes,id: v.id};})
+             ,uid: v.uid
+             ,field: v.field};
+   },
+   model);
    var Video = F3(function (a,b,c) {    return {uri: a,votes: b,id: c};});
    var Model = F3(function (a,b,c) {    return {videos: a,uid: b,field: c};});
    return _elm.VideoVoting.values = {_op: _op
@@ -10408,5 +10432,6 @@ Elm.VideoVoting.make = function (_elm) {
                                     ,classForVideo: classForVideo
                                     ,main: main
                                     ,model: model
+                                    ,initialModel: initialModel
                                     ,actions: actions};
 };

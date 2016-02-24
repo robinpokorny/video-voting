@@ -34,13 +34,8 @@ newVideo uri id =
 
 emptyModel : Model
 emptyModel =
-    { videos =
-        [ { uri = "https://www.youtube.com/watch?v=rhV6hlL_wMc", votes = 3, id = 0 }
-        , { uri = "https://www.youtube.com/watch?v=oHg5SJYRHA0", votes = 5, id = 1 }
-        , { uri = "https://www.youtube.com/watch?v=C-u5WLJ9Yk4", votes = 1, id = 2 }
-        , { uri = "https://www.youtube.com/watch?v=DqMFX91ToLw", votes = 3, id = 3 }
-        ]
-    , uid = 4
+    { videos = []
+    , uid = 0
     , field = ""
     }
 
@@ -172,8 +167,17 @@ main =
 
 model : Signal Model
 model =
-  Signal.foldp update emptyModel actions.signal
+  Signal.foldp update initialModel actions.signal
+
+initialModel : Model
+initialModel =
+  Maybe.withDefault emptyModel getStorage
 
 actions : Signal.Mailbox Action
 actions =
   Signal.mailbox NoOp
+
+port getStorage : Maybe Model
+
+port setStorage : Signal Model
+port setStorage = model
