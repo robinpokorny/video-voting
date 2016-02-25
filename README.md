@@ -1,5 +1,7 @@
 # Video voting
 
+[![Build Status](https://semaphoreci.com/api/v1/robinpokorny/video-voting/branches/master/badge.svg)](https://semaphoreci.com/robinpokorny/video-voting)
+
 [DEMO](http://robinpokorny.github.io/video-voting/)
 
 Simple video voting app in Elm
