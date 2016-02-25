@@ -4,10 +4,21 @@
 
 Simple video voting app in Elm
 
-## Build
+## Install
 ```bash
-elm package install
-elm-make VideoVoting.elm --output elm.js
+npm install
 ```
 
-Open `index.html`
+## Run locally
+```bash
+npm run dev
+```
+
+Open `http://localhost:3000/`.
+
+## Build
+```bash
+npm run build
+```
+
+Bundles application to `/dist` folder.

@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" size="16x16, 32x32, 48x48, 64x64, 128x128, 256x256" href="./favicon.ico">
   <title>Video Voting</title>
-  <script type="text/javascript" src="elm.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <style>
@@ -79,16 +78,7 @@
       <p><small>Created by <a href="http://robinpokorny.com/">Robin Pokorny</a> during <a href="http://elm-lang.berlin/">Berlin Elm Hackathon</a>.</small></p>
     </footer>
   </div>
+
+  <script type="text/javascript" src="index.js"></script>
 </body>
-
-<script type="text/javascript">
-var DEMO_STATE = {"videos":[{"uri":"https://www.youtube.com/watch?v=rhV6hlL_wMc","votes":3,"id":0},{"uri":"https://www.youtube.com/watch?v=oHg5SJYRHA0","votes":5,"id":1},{"uri":"https://www.youtube.com/watch?v=C-u5WLJ9Yk4","votes":1,"id":2},{"uri":"https://www.youtube.com/watch?v=DqMFX91ToLw","votes":3,"id":3}],"uid":4,"field":""}
-var storedState = localStorage.getItem('video-voting-state');
-var startingState = storedState ? JSON.parse(storedState) : DEMO_STATE ;
-var app =  Elm.embed(Elm.VideoVoting, document.getElementById('app'), { getStorage: startingState })
-app.ports.setStorage.subscribe(function(state) {
-    localStorage.setItem('video-voting-state', JSON.stringify(state));
-});
-</script>
-
 </html>
