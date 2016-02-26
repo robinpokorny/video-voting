@@ -1,6 +1,8 @@
 # Video voting
 
-[![Build Status](https://semaphoreci.com/api/v1/robinpokorny/video-voting/branches/master/badge.svg)](https://semaphoreci.com/robinpokorny/video-voting)
+[![version](https://img.shields.io/badge/version-1.0.0-green.svg?style=flat-square)]()
+[![Build Status](https://img.shields.io/badge/build-passed-brightgreen.svg?style=flat-square)](https://semaphoreci.com/robinpokorny/video-voting)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/robinpokorny/video-voting/blob/master/LICENSE)
 
 [DEMO](http://robinpokorny.github.io/video-voting/)
 
