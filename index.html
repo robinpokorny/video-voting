@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" size="16x16, 32x32, 48x48, 64x64, 128x128, 256x256" href="./favicon.ico">
+  <title>Video Voting</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <style>
+    body {
+      padding-top: 40px;
+    }
+
+    .container {
+      max-width: 600px;
+    }
+
+    .btn-js {
+      background-color: #f7df1e;
+      color: black;
+    }
+      .btn-js:hover {
+        opacity: .8
+      }
+
+    .form-inline {
+      margin-bottom: 20px;
+    }
+
+    label {
+      margin-right: 20px;
+    }
+
+    .main-field {
+      min-width: 250px;
+    }
+
+    .delete {
+      padding-left: 5px;
+    }
+
+    .winner,
+    .list-group-item.winner:hover,
+    .list-group-item.winner:focus {
+      z-index: 2;
+      background-color: #f7df1e;
+      border-color: #f7df1e;
+    }
+
+    .footer {
+      margin: 50px 0 20px;
+      padding: 20px 15px;
+      border-top: 1px solid #e5e5e5;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Video Voting</h1>
+      <p class="lead">For <em>The Berlin JavaScript Playback Meetup</em></p>
+      <p>
+        <a class="btn btn-lg btn-js" href="http://www.meetup.com/berlin-javascript-playback/" role="button">Meetup page</a>
+        <a class="btn btn-lg btn-default" href="https://github.com/robinpokorny/video-voting">GitHub</a>
+      </p>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div id="app"></div>
+      </div>
+    </div>
+    <footer class="footer">
+      <p><strong>Usage:</strong> Suggest videos, vote by clicking, delete spam. Winner is highlighed.</p>
+      <p><small>Created by <a href="http://robinpokorny.com/">Robin Pokorny</a> during <a href="http://elm-lang.berlin/">Berlin Elm Hackathon</a>.</small></p>
+    </footer>
+  </div>
+
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>
